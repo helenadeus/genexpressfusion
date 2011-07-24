@@ -26,8 +26,6 @@ CONSTRUCT {
 ?resultSet differential_expression: ?expression .
 
 ?gene a gene: ; chromosomeLocation: ?chromosomeLocation ; rdfs:label ?geneSymbol .
-?gene rdfs:label ?geneSymbol .
-
 
 }
 WHERE {
@@ -45,19 +43,17 @@ WHERE {
 			<http://purl.org/dc/terms/isPartOf>   ?experiment ;
 			<http://purl.org/net/biordfmicroarray/ns#has_ouput_value>			?foldChange .
 		
-
-		{ ?foldChange rdf:type biordf:fold_change; rdf:value ?diffexpression filter (xsd:decimal(?diffexpression) > 0) .
-		       BIND ("UP" AS ?expression)
-		} UNION {
-		  ?foldChange rdf:type biordf:fold_change; rdf:value ?diffexpression filter (xsd:decimal(?diffexpression) < 0) .
-		       BIND ("DOWN" AS ?expression)
-		}
-
-		
-
+		?foldChange rdf:type biordf:fold_change; 
+					rdf:value ?diffexpression .
 	}
 
+			
+	{ filter (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression) 	} 
+	UNION 
+	{ ?diffexpression filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) }
+
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+	
 	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
 			?probeuri affy:xEnsembl ?gene ;
                   affy:Chromosomal_Location ?chromosomeLocation ;
