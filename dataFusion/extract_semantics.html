@@ -1,0 +1,78 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Extract Classes and Properties from SPARQL endpoints</title> 
+	<script type="text/javascript" src="jquery.mobile/jquery-1.6.1.min.js"></script>
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.0b1.css" />
+	
+	<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.0b1.js"></script>
+<script type="text/javascript" src="extract_semantics.js">
+
+</script>
+
+
+</head> 
+
+<body>
+<div data-role="page">
+
+	<div data-role="header">
+		<h1>Mapping Gene Expressions SPARQL endpoints</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Select your SPARQL endpoints and start Linking!</p>	
+		<div data-role="collapsible" data-collapsed="false" data-theme="a" style="" id="sparql">
+			<h3>Choose SPARQL endpoints</h3>
+				<div data-role="fieldcontain" data-theme="b" >
+					<label for="sparql1">SPARQL endpoint</label>
+					<input type="text" id="sparql1" name="sparql1" class="sparql" value="http://wwwdev.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa"  />
+					<span id="templating" style="color:red;size:x-small">*template</span>
+					<br />
+					<label for="sparql2">SPARQL endpoint</label>
+					<input type="text" id="sparql2" name="sparql2" class="sparql" value="http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray"  /><br />
+					<label for="sparql3">SPARQL endpoint</label>
+					<input type="text" id="sparql3" name="sparql2" value="http://bloodprogram.hsci.harvard.edu/sparql" class="sparql" /><br />
+					<!-- <label for="text"></label><a href="" onClick="moreSPARQL()">Add more</a> -->
+					<br /><br />
+					<input type="button" onClick="getClasses()" value="Get Types">
+				</div>
+				
+			</div>
+			<br />
+			<div data-role="collapsible" data-collapsed="false" data-theme="a" style="" id="link">
+			<h3>Next step...Choose and match classes </h3>
+				<div data-role="fieldcontain" data-theme="b" id="sparql_types">
+					<label for="sparql1_types" class="select">SPARQL Types</label>
+					<select data-role="select" id="sparql1_types" class="sparql_types">
+						<option value="(no match)"></option>
+					</select>
+					<label for="sparql2_types" class="select">SPARQL Types</label>
+					<select data-role="select" id="sparql2_types" class="sparql_types">
+						<option value="(no match)"></option>
+					</select>
+					<label for="sparql3_types" class="select">SPARQL Types</label>
+					<select data-role="select" id="sparql3_types" class="sparql_types">
+						<option value="(no match)"></option>
+					</select>
+				</div>
+				
+				<label for="nameVar">What would you call this variable?</label>
+				<input type="text" value="somename" id="nameVar"><span id="varError" style="color:red"></span>
+				<input type="button" value="Match!" onClick="matchClasses()">
+			</div>
+			<div data-role="collapsible" data-collapsed="false" data-theme="a" style="display:inline" id="construct">
+			<h3>Use these constructs for your SPARQL query:</h3>
+			<label for="construct2" id="constructLabel2">Construct for endpoint #2</label>
+			<textarea id="construct2"></textarea>
+			<label for="construct3" id="constructLabel3">Construct for endpoint #3</label>
+			<textarea id="construct3"></textarea>
+			</div>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4></h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
+</body>
+</html>

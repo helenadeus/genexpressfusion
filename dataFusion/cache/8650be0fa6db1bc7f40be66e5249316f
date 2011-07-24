@@ -1,0 +1,33 @@
+{
+	"head": {
+		"vars": [ "class" ]
+	}, 
+	"results": {
+		"bindings": [
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#reference" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#gene" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#sample_list" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#sample" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#microarray_experiment_set" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#microarray_experiment" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/purl.org\/net\/biordfmicroarray\/ns#fold_change" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/rdfs.org\/ns\/void#Dataset" }
+			}
+		]
+	}
+}

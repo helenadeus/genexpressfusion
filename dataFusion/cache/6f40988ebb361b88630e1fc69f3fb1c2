@@ -1,0 +1,15 @@
+{
+	"head": {
+		"vars": [ "class" ]
+	}, 
+	"results": {
+		"bindings": [
+			{
+				"class": { "type": "uri", "value": "http:\/\/www.ebi.ac.uk\/efo\/EFO_0004033" }
+			}, 
+			{
+				"class": { "type": "uri", "value": "http:\/\/www.ebi.ac.uk\/efo\/EFO_0002606" }
+			}
+		]
+	}
+}

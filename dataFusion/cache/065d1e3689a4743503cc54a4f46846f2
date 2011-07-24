@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html lang="en" xml:lang="en">
+<head>
+	<title>WAMPSERVER Homepage</title>
+	<meta http-equiv="Content-Type" content="txt/html; charset=utf-8" />
+
+	<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: #ddd;
+}
+body {
+	margin: 1em 10%;
+	padding: 1em 3em;
+	font: 80%/1.4 tahoma, arial, helvetica, lucida sans, sans-serif;
+	border: 1px solid #999;
+	background: #eee;
+	position: relative;
+}
+#head {
+	margin-bottom: 1.8em;
+	margin-top: 1.8em;
+	padding-bottom: 0em;
+	border-bottom: 1px solid #999;
+	letter-spacing: -500em;
+	text-indent: -500em;
+	height: 125px;
+	background: url(index.php?img=gifLogo) 0 0 no-repeat;
+}
+.utility {
+	position: absolute;
+	right: 4em;
+	top: 145px;
+	font-size: 0.85em;
+}
+.utility li {
+	display: inline;
+}
+
+h2 {
+	margin: 0.8em 0 0 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#head ul li, dl ul li, #foot li {
+	list-style: none;
+	display: inline;
+	margin: 0;
+	padding: 0 0.2em;
+}
+ul.aliases, ul.projects, ul.tools {
+	list-style: none;
+	line-height: 24px;
+}
+ul.aliases a, ul.projects a, ul.tools a {
+	padding-left: 22px;
+	background: url(index.php?img=pngFolder) 0 100% no-repeat;
+}
+ul.tools a {
+	background: url(index.php?img=pngWrench) 0 100% no-repeat;
+}
+ul.aliases a {
+	background: url(index.php?img=pngFolderGo) 0 100% no-repeat;
+}
+dl {
+	margin: 0;
+	padding: 0;
+}
+dt {
+	font-weight: bold;
+	text-align: right;
+	width: 11em;
+	clear: both;
+}
+dd {
+	margin: -1.35em 0 0 12em;
+	padding-bottom: 0.4em;
+	overflow: auto;
+}
+dd ul li {
+	float: left;
+	display: block;
+	width: 16.5%;
+	margin: 0;
+	padding: 0 0 0 20px;
+	background: url(index.php?img=pngPlugin) 2px 50% no-repeat;
+	line-height: 1.6;
+}
+a {
+	color: #024378;
+	font-weight: bold;
+	text-decoration: none;
+}
+a:hover {
+	color: #04569A;
+	text-decoration: underline;
+}
+#foot {
+	text-align: center;
+	margin-top: 1.8em;
+	border-top: 1px solid #999;
+	padding-top: 1em;
+	font-size: 0.85em;
+}
+</style>
+    
+	<link rel="shortcut icon" href="index.php?img=favicon" type="image/ico" />
+</head>
+
+<body>
+	<div id="head">
+		<h1><abbr title="Windows">W</abbr><abbr title="Apache">A</abbr><abbr title="MySQL">M</abbr><abbr title="PHP">P</abbr></h1>
+		<ul>
+			<li>PHP 5</li>
+			<li>Apache 2</li>
+			<li>MySQL 5</li>
+		</ul>
+	</div>
+
+	<ul class="utility">
+		<li>Version 2.1</li>
+		<li><a href="?lang=fr">Version Fran&ccedil;aise</a></li>
+	</ul>
+
+	<h2> Server Configuration </h2>
+
+	<dl class="content">
+		<dt>Apache Version :</dt>
+		<dd>2.2.17 &nbsp;</dd>
+		<dt>PHP Version :</dt>
+		<dd>5.3.4 &nbsp;</dd>
+		<dt>Loaded Extensions : </dt> 
+		<dd>
+			<ul>
+			<li>Core</li><li>bcmath</li><li>calendar</li><li>com_dotnet</li><li>ctype</li><li>date</li><li>ereg</li><li>filter</li><li>ftp</li><li>hash</li><li>iconv</li><li>json</li><li>SPL</li><li>odbc</li><li>pcre</li><li>Reflection</li><li>session</li><li>standard</li><li>mysqlnd</li><li>tokenizer</li><li>zip</li><li>zlib</li><li>libxml</li><li>dom</li><li>PDO</li><li>Phar</li><li>SimpleXML</li><li>wddx</li><li>xml</li><li>xmlreader</li><li>xmlwriter</li><li>apache2handler</li><li>curl</li><li>gd</li><li>mbstring</li><li>mysql</li><li>mysqli</li><li>pdo_mysql</li><li>pdo_sqlite</li><li>mhash</li><li>xdebug</li>
+			</ul>
+		</dd>
+		<dt>MySQL Version :</dt>
+		<dd>5.1.53 &nbsp;</dd>
+	</dl>
+	<h2>Tools</h2>
+	<ul class="tools">
+		<li><a href="?phpinfo=1">phpinfo()</a></li>
+		<li><a href="phpmyadmin/">phpmyadmin</a></li>
+	</ul>
+	<h2>Your Projects</h2>
+	<ul class="projects">
+	<li><a href="analytics_default">analytics_default</a></li><li><a href="arc">arc</a></li><li><a href="biordfmicroarray">biordfmicroarray</a></li><li><a href="blueprint">blueprint</a></li><li><a href="C2SMA">C2SMA</a></li><li><a href="C2SMA_svn">C2SMA_svn</a></li><li><a href="C2SMA_ver_control">C2SMA_ver_control</a></li><li><a href="chemwriter">chemwriter</a></li><li><a href="context">context</a></li><li><a href="couchTests">couchTests</a></li><li><a href="d3">d3</a></li><li><a href="drupal-7.2">drupal-7.2</a></li><li><a href="easyrdf-0.6.0">easyrdf-0.6.0</a></li><li><a href="geneXpressFusion">geneXpressFusion</a></li><li><a href="jquery.mobile">jquery.mobile</a></li><li><a href="LOGD">LOGD</a></li><li><a href="odc">odc</a></li><li><a href="openDataChallenge">openDataChallenge</a></li><li><a href="pitch">pitch</a></li><li><a href="portable_s3db">portable_s3db</a></li><li><a href="protein3D">protein3D</a></li><li><a href="protovis">protovis</a></li><li><a href="qrmendeley">qrmendeley</a></li><li><a href="qrmendeleyJul">qrmendeleyJul</a></li><li><a href="qrmendeleyOLD">qrmendeleyOLD</a></li><li><a href="qrmendeley_ci">qrmendeley_ci</a></li><li><a href="qr_mendeley_server">qr_mendeley_server</a></li><li><a href="s3db3.5.14">s3db3.5.14</a></li><li><a href="s3db_propagate">s3db_propagate</a></li><li><a href="sabaku">sabaku</a></li><li><a href="sabaku-sandbox">sabaku-sandbox</a></li><li><a href="sabaku2">sabaku2</a></li><li><a href="sabakuTests">sabakuTests</a></li><li><a href="sabaku_sandbox1">sabaku_sandbox1</a></li><li><a href="schemas">schemas</a></li><li><a href="semanticSandbox">semanticSandbox</a></li><li><a href="sqwelch">sqwelch</a></li><li><a href="templatedb">templatedb</a></li><li><a href="VIVO">VIVO</a></li><li><a href="VIVO_webApps">VIVO_webApps</a></li><li><a href="wordpress">wordpress</a></li>
+	</ul>
+	<h2>Your Aliases</h2>
+	<ul class="aliases">
+	<li><a href="phpmyadmin/">phpmyadmin</a></li><li><a href="sqlbuddy/">sqlbuddy</a></li><li><a href="webgrind/">webgrind</a></li>			
+	</ul>
+	<ul id="foot">
+		<li><a href="http://www.wampserver.com">WampServer</a></li> - 
+        <li><a href="http://www.wampserver.com/en/donations.php">Donate</a></li> -
+		<li><a href="http://www.alterway.fr">Alter Way</a></li>
+	</ul>
+</body>
+</html>

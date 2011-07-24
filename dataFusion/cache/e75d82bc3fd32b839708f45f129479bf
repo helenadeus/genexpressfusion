@@ -1,0 +1,35 @@
+{
+  "head": {
+    "vars": [
+      "class"
+    ]
+  },
+  "results": {
+    "bindings": [
+      {
+        "class": {
+          "type": "uri",
+          "value": "http://mged.sourceforge.net/ontologies/MGEDontology.php#BioAssay"
+        }
+      },
+      {
+        "class": {
+          "type": "uri",
+          "value": "http://www.ebi.ac.uk/efo/obo_0000070"
+        }
+      },
+      {
+        "class": {
+          "type": "uri",
+          "value": "http://mged.sourceforge.net/ontologies/MGEDontology.php#BioMaterial"
+        }
+      },
+      {
+        "class": {
+          "type": "uri",
+          "value": "http://xmlns.com/foaf/0.1/Person"
+        }
+      }
+    ]
+  }
+}
