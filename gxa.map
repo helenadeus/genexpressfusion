@@ -22,7 +22,7 @@ CONSTRUCT {
 			result: ?resultSet .
 }
 WHERE {
-	SERVICE <http://www.open-biomed.org.uk/sparql/endpoint/gxa?> {
+	SERVICE <http://wwwdev.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
 		?experiment	a	<http://www.ebi.ac.uk/efo/EFO_0004033> ;
 				modelOrganism: ?modelOrganism ;
 				<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
