@@ -32,7 +32,7 @@ WHERE {
 	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
 		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
 				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism ;
-				rdfs:label rdfs:label ?experimentName .
+				rdfs:label ?experimentName .
 
 		?geneLocal a <http://purl.org/net/biordfmicroarray/ns#gene> ;
 			stat:probe_set_id ?probeid ;
