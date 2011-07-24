@@ -50,7 +50,7 @@ WHERE {
 			
 	{ filter (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression) 	} 
 	UNION 
-	{ ?diffexpression filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) }
+	{ filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) }
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	
