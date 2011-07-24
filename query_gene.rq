@@ -1,0 +1,11 @@
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+PREFIX sample: <http://www.ebi.ac.uk/efo/EFO_0001434>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions>
+
+SELECT * 
+WHERE {	
+?gene        rdf:type         gene: .
+}

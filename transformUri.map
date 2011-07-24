@@ -1,0 +1,31 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+PREFIX biordf: <http://purl.org/net/biordfmicroarray/ns#>
+
+
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX affy: <http://bio2rdf.org/ns/affymetrix#>
+select *  where {
+
+SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
+
+	?geneLocal a <http://purl.org/net/biordfmicroarray/ns#gene> ;
+
+		biordf:probe_set_id ?probeid .
+
+}
+        BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+
+SERVICE <http://affymetrix.bio2rdf.org/sparql> {
+        ?probeuri affy:xSpecies_Scientific_Name ?species ;
+                  affy:xEnsembl ?ensemblID ;
+                  affy:Chromosomal_Location ?Chromosomal_Location .
+        
+
+}
+
+
+       
+}

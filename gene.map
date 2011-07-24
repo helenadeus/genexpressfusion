@@ -1,0 +1,14 @@
+PREFIX psys: <http://proton.semanticweb.org/2006/05/protons#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gene: <http://linkedlifedata.com/resource/entrezgene/>
+
+SELECT *
+WHERE {
+    SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray?> {
+	?geneA a <http://purl.org/net/biordfmicroarray/ns#gene> .
+    ?gene ?p ?o .
+    }
+    SERVICE <http://linkedlifedata.com/sparql> {
+	?geneB rdf:type gene:Gene; <http://linkedlifedata.com/resource/entrezgene/hasGeneId> ?geneID ;
+    }
+}

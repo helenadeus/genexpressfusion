@@ -1,0 +1,28 @@
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+PREFIX sample : <http://www.ebi.ac.uk/efo/EFO_0001434>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT { 
+?experiment a experiment: ;
+	rdfs:label ?experimentName .
+
+
+?sample a sample: ;
+	rdfs:label ?sampleName .
+
+
+}
+
+WHERE {	
+SERVICE <http://bloodprogram.hsci.harvard.edu/sparql?> {
+	?experiment        a          <http://mged.sourceforge.net/ontologies/MGEDontology.php#BioAssay> ;
+			<http://purl.org/dc/terms/title>	?experimentName .
+
+	?sample	a	<http://mged.sourceforge.net/ontologies/MGEDontology.php#BioMaterial> ;
+			<http://purl.org/dc/terms/title>	?sampleName .
+		
+	}
+}
+
