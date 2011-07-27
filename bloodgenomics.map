@@ -44,7 +44,7 @@ SERVICE <http://bloodprogram.hsci.harvard.edu/sparql?> {
 	}
 
 SERVICE <http://sparql.obo.neurocommons.org/sparql> {
-		<http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090> rdfs:label ?modelOrganism .
+		?modelOrganismTaxon rdfs:label ?modelOrganism .
 	}
 }
 
