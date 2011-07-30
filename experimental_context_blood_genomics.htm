@@ -1,0 +1,1338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>SPARQL Query Results</title>
+    <style type="text/css" media="screen">
+/*<![CDATA[*/
+code {
+  font-weight: bold;
+  }
+
+#requery {
+  margin-top:-1em;
+}
+
+#edit {
+  border:1px solid #000;
+  padding: 1em;
+  background-color: #eee;
+  font-size: smaller;
+  }
+
+#results {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
+  }
+#results td, #results th {
+  font-size:1.2em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  }
+#results th {
+  font-size:1.4em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#fff;
+  }
+#results tr.even td {
+  color:#000;
+  background-color:#EAF2D3;
+  }
+/*]]>*/
+    </style>
+
+    <script language="javascript" type="text/javascript">
+<!--
+    window.onload=function(){
+	toggleDisplay('requery');
+	var query = document.getElementById('requery');
+	var p = document.createElement('p');
+	document.body.insertBefore(p, query);
+	var input = document.createElement('input');
+	input.setAttribute('type', 'checkbox');
+	input.setAttribute('onclick', 'toggleDisplay("requery")');
+	p.appendChild(input);
+	p.appendChild(document.createTextNode(" display query"));
+    };
+    function toggleDisplay(element){
+	s = document.getElementById(element).style
+	if(s.display == 'none')
+	    s.display = 'block';
+	else
+	    s.display = 'none';
+    }
+    function modify(id){
+	var path = document.getElementById(id + "_form").getAttribute("action");
+	var tr = document.getElementById(id);
+	var q = document.getElementById(id + "_query");
+	var del = q.value;
+	var off = q.value.indexOf(";")
+	if (off != -1)
+	    del = del.substr(0, off);
+
+	var ns = document.getElementById(id + '_0').childNodes[0].nodeValue;
+	var np = document.getElementById(id + '_1').childNodes[0].nodeValue;
+	var no = document.getElementById(id + '_2').childNodes[0].nodeValue;
+
+	q.value = del + "; INSERT DATA { " + ns + " " + np + " " + no + " }";
+	document.getElementById(id + "_submit").value = "modify";
+    }
+    function copy (from, to) {
+	var children = document.getElementById(from).childNodes;
+	var q = "";
+	for (var i = 0; i < children.length; i++) {
+	    if (children[i].nodeValue != null)
+		q = q + children[i].nodeValue + "\n";
+	}
+	document.getElementById(to).value = q;
+    }
+-->
+    </script>
+  </head>
+  <body>
+    <h1>SPARQL Query Results</h1>
+<div id="requery">
+  <pre contenteditable="true" id="edit" style="display:block; float:left;">PREFIX experiment: &lt;http://www.ebi.ac.uk/efo/EFO_0004033&gt;
+PREFIX gene: &lt;http://www.ebi.ac.uk/efo/EFO_0002606&gt;
+PREFIX sample: &lt;http://www.ebi.ac.uk/efo/EFO_0001434&gt;
+PREFIX modelOrganism: &lt;http://purl.obolibrary.org/obo/OBI_0100026&gt;
+PREFIX differential_expression: &lt;http://www.ebi.ac.uk/efo/EFO_0004034&gt;
+PREFIX result: &lt;http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result&gt;
+PREFIX chromosomeLocation: &lt;http://www.geneontology.org/go#0050000&gt;
+PREFIX platform: &lt;http://purl.obolibrary.org/obo/OBI_0000052&gt;
+PREFIX mged: &lt;http://mged.sourceforge.net/ontologies/MGEDontology.php#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX biordf: &lt;http://purl.org/net/biordfmicroarray/ns#&gt;
+PREFIX stat: &lt;http://purl.org/net/biordfmicroarray/ns#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+prefix affy: &lt;http://bio2rdf.org/ns/affymetrix#&gt;
+PREFIX fn: &lt;http://www.w3.org/2005/xpath-functions&gt;
+
+SELECT * where { 
+?experiment a experiment: ;
+	rdfs:label ?experimentName ;
+	modelOrganism: ?modelOrganism ;
+	platform: ?platform .
+}</pre>
+  <form action="sw" method="get">
+    <p>
+      <input id="query" name="query" type="hidden" value=""/>
+      <input name="media" type="hidden" value="edit"/>
+      <input onclick="copy('edit', 'query')" style="margin: 2em;" type="submit" value="re-query"/>
+    </p>
+  </form>
+</div>
+<table class="tablesorter" id="results">
+  <thead>
+    <tr>
+      <th>?_0x133a4f30_0_modelOrganismTaxon</th>
+      <th>?_0x133a4f30_0_output</th>
+      <th>?_0x133a4f30_0_sample</th>
+      <th>?_0x133a4f30_0_sampleName</th>
+      <th>?experiment</th>
+      <th>?experimentName</th>
+      <th>?modelOrganism</th>
+      <th>?platform</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/fetal-ksl-cells-wild-type&gt;</td>
+      <td>"Fetal KSL cells Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/fetal-ksl-cells-cebpa-knockout&gt;</td>
+      <td>"Fetal KSL cells C/EBPa knockout"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wild-type&gt;</td>
+      <td>"LT-HSC Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-cebpa-knockout&gt;</td>
+      <td>"LT-HSC C/EBPa knockout"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-wild-type&gt;</td>
+      <td>"ST-HSC Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-cebpa-knockout&gt;</td>
+      <td>"ST-HSC C/EBPa knockout"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mac1c-kit-progenitors-wild-type&gt;</td>
+      <td>"Mac1+c-Kit+ progenitors wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mac1c-kit-progenitors-acute-myeloid-leukemia&gt;</td>
+      <td>"Mac1+c-Kit+ progenitors acute myeloid leukemia"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt&gt;</td>
+      <td>"Sorted Cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko&gt;</td>
+      <td>"Sorted Cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-1&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-3&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-0&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-2&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-adult-ko&gt;</td>
+      <td>"Whole Adult KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-adult-wt&gt;</td>
+      <td>"Whole Adult WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-adult-treated&gt;</td>
+      <td>"whole adult treated"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-adult-untreated&gt;</td>
+      <td>"whole adult untreated"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-old-wild-type&gt;</td>
+      <td>"LT-HSC (old) Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-young-wild-type&gt;</td>
+      <td>"LT-HSC (young) Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mep-cells-wild-type&gt;</td>
+      <td>"MEP cells Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/l-gmp&gt;</td>
+      <td>"L-GMP"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-cells-wild-type&gt;</td>
+      <td>"HSC cells Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/gmp-cells-wild-type&gt;</td>
+      <td>"GMP cells Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cmp-cells-wild-type&gt;</td>
+      <td>"CMP cells Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-4&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-4&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-5&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-5&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-6&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-6&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-7&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-7&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko-0&gt;</td>
+      <td>"sorted cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt-0&gt;</td>
+      <td>"sorted cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-8&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-8&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-9&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-9&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-10&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-10&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wt&gt;</td>
+      <td>"LT-HSC WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-ko&gt;</td>
+      <td>"LT-HSC KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-11&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-11&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko-1&gt;</td>
+      <td>"sorted cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt-1&gt;</td>
+      <td>"sorted cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko-2&gt;</td>
+      <td>"Sorted Cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt-2&gt;</td>
+      <td>"Sorted Cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko-3&gt;</td>
+      <td>"sorted cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt-3&gt;</td>
+      <td>"sorted cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-12&gt;</td>
+      <td>"whole embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-12&gt;</td>
+      <td>"whole embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-13&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-13&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wild-type-0&gt;</td>
+      <td>"LT-HSC  Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mpp-wild-type&gt;</td>
+      <td>"MPP Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-wild-type-0&gt;</td>
+      <td>"ST-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wild-type-1&gt;</td>
+      <td>"LT-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-wild-type-1&gt;</td>
+      <td>"ST-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-wild-type&gt;</td>
+      <td>"HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-foxo-deficient&gt;</td>
+      <td>"HSC FoxO Deficient"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cmp-wild-type&gt;</td>
+      <td>"CMP Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cmp-foxo-deficient&gt;</td>
+      <td>"CMP FoxO Deficient"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hscs-dnmt1-conditional-ko&gt;</td>
+      <td>"LT-HSCs Dnmt1 conditional KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mpps-dnmt1-conditional-ko&gt;</td>
+      <td>"MPPs Dnmt1 conditional KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/myeloid-progenitors-dnmt1-conditional-ko&gt;</td>
+      <td>"Myeloid progenitors Dnmt1 conditional KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hscs-wt&gt;</td>
+      <td>"LT-HSCs WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mpps-wt&gt;</td>
+      <td>"MPPs WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/myeloid-progenitors-wt&gt;</td>
+      <td>"Myeloid progenitors WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-14&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-14&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-ko-4&gt;</td>
+      <td>"sorted cells KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sorted-cells-wt-4&gt;</td>
+      <td>"sorted cells WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lks-p18&gt;</td>
+      <td>"LKS p18-/-"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lks-wt&gt;</td>
+      <td>"LKS WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-p18&gt;</td>
+      <td>"LT-HSC p18-/-"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wt-0&gt;</td>
+      <td>"LT-HSC WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lks-p21&gt;</td>
+      <td>"LKS p21-/-"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-p21&gt;</td>
+      <td>"LT-HSC p21-/-"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-wt&gt;</td>
+      <td>"ST-HSC WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wild-type-2&gt;</td>
+      <td>"LT-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/st-hsc-wild-type-2&gt;</td>
+      <td>"ST-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/mpp-wild-type-0&gt;</td>
+      <td>"MPP Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lks-stem-and-progenitor-cells-wild-type&gt;</td>
+      <td>"LKS [stem and progenitor cells] Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/sca-wild-type&gt;</td>
+      <td>"Sca Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/kit-wild-type&gt;</td>
+      <td>"Kit Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-bone-marrow-red-cells-lysed-wild-type&gt;</td>
+      <td>"Whole Bone Marrow [red cells lysed] Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lin-wild-type&gt;</td>
+      <td>"Lin Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-ko-15&gt;</td>
+      <td>"Whole Embryo KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_7955&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-embryo-wt-15&gt;</td>
+      <td>"Whole Embryo WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Danio rerio"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/lt-hsc-wild-type-3&gt;</td>
+      <td>"LT-HSC Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/nk-cells-wild-type&gt;</td>
+      <td>"NK Cells Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cd4-naive-t-cells-wild-type&gt;</td>
+      <td>"CD4+ naive T-cells Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cd48-naive-t-cells-wild-type&gt;</td>
+      <td>"CD48+ naive T-cells Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cd4-activated-t-cells-wild-type&gt;</td>
+      <td>"CD4+ activated T-cells Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/cd8-activated-t-cells-wild-type&gt;</td>
+      <td>"CD8+ activated T-cells Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/b-cell-wild-type&gt;</td>
+      <td>"B-Cell Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/monocyte-wild-type&gt;</td>
+      <td>"Monocyte Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/granulocytes-wild-type&gt;</td>
+      <td>"Granulocytes Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/nucleated-erythrocytes-wild-type&gt;</td>
+      <td>"Nucleated Erythrocytes Wild Type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-wt&gt;</td>
+      <td>"HSC WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-ht&gt;</td>
+      <td>"HSC HT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/hsc-ko&gt;</td>
+      <td>"HSC KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/gfp-hsc-wt&gt;</td>
+      <td>"GFP- HSC WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/gfp-hsc-ko&gt;</td>
+      <td>"GFP+ HSC KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/normal-bm-neutrophils-wt&gt;</td>
+      <td>"Normal BM neutrophils WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/normal-bm-myeloblasts-mac1-wt&gt;</td>
+      <td>"Normal BM myeloblasts Mac1- WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/normal-bm-myeloblasts-mac1-wt-0&gt;</td>
+      <td>"Normal BM myeloblasts Mac1+ WT"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/med-macrophages-med&gt;</td>
+      <td>"med macrophages med"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/scs-macrophages-scs&gt;</td>
+      <td>"SCS macrophages SCS"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-lung-embryonic-ko&gt;</td>
+      <td>"Whole lung embryonic  KO"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_10090&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/whole-lung-embryonic-wild-type&gt;</td>
+      <td>"Whole lung embryonic  Wild type"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Mus musculus"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p30er-6h-estradiol&gt;</td>
+      <td>"K562 cell line p30:ER 6h Estradiol"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p30er-6hr-vehicle-control&gt;</td>
+      <td>"K562 cell line p30:ER 6hr vehicle control"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p42er-6hr-estradiol&gt;</td>
+      <td>"K562 cell line p42:ER 6hr Estradiol"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p42er-6hr-vehicle-control&gt;</td>
+      <td>"K562 cell line p42:ER 6hr vehicle control"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p30er-0hr-no-trx&gt;</td>
+      <td>"K562 cell line p30:ER 0hr (no trx)"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://purl.org/obo/owl/NCBITaxon#NCBITaxon_9606&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/sites/default/files/datafiles/061404%20MOUSE430%202.0%20DT%20C1.CEL&gt;</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/biomaterial/k562-cell-line-p42er-0hr-no-trx&gt;</td>
+      <td>"K562 cell line p42:ER 0hr (no trx)"</td>
+      <td>&lt;http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1&gt;</td>
+      <td>"Fetal KSL cells Wild type Rep #1"</td>
+      <td>"Homo sapiens"</td>
+      <td>"Mouse Genome 430 2.0 Array"</td>
+    </tr>
+  </tbody>
+</table>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+./sparql64 -d genexpressfusion/model_organism_taxon.rdf -m genexpressfusion/bloodgenomics.map genexpressfusion/query_experimetal_context.rq > exp_context.out
