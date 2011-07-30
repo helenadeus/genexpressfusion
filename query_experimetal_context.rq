@@ -19,6 +19,5 @@ SELECT * where {
 ?experiment a experiment: ;
 	rdfs:label ?experimentName ;
 	modelOrganism: ?modelOrganism ;
-	result: ?resultSet ;
 	platform: ?platform .
 }

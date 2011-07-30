@@ -20,6 +20,7 @@ CONSTRUCT {
 ?experiment a experiment: ;
 		rdfs:label ?experimentName ;
 		modelOrganism: ?modelOrganism ;
+		result: ?resultSet ;
 		platform: ?platform .
 
 
@@ -35,6 +36,9 @@ SERVICE <http://bloodprogram.hsci.harvard.edu/sparql> {
 			<http://purl.org/dc/terms/title>	?experimentName ;
 			mged:platform	?platform ;
 			mged:has_output ?output .
+	OPTIONAL { ?experiment	result:		?resultSet } .
+
+
 
 	?sample	a	<http://mged.sourceforge.net/ontologies/MGEDontology.php#BioMaterial> ;
 			<http://purl.org/dc/terms/title>	?sampleName ;
