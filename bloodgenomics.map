@@ -30,7 +30,7 @@ CONSTRUCT {
 }
 
 WHERE {	
-SERVICE <http://bloodprogram.hsci.harvard.edu/sparql?> {
+SERVICE <http://bloodprogram.hsci.harvard.edu/sparql> {
 	?experiment        a          <http://mged.sourceforge.net/ontologies/MGEDontology.php#BioAssay> ;
 			<http://purl.org/dc/terms/title>	?experimentName ;
 			mged:platform	?platform ;
