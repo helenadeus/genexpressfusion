@@ -19,8 +19,7 @@ CONSTRUCT {
 ?experiment a experiment: ;
 			rdfs:label ?experimentName ;
 			modelOrganism: ?modelOrganism ;
-			result: ?resultSet ;
-			platform: ?platform .
+			result: ?resultSet .
 
 ?resultSet gene: ?gene ; 
 			differential_expression: ?expression .
@@ -54,9 +53,4 @@ WHERE {
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	
-	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
-			?probeuri affy:xEnsembl ?gene ;
-                  affy:Chromosomal_Location ?chromosomeLocation ;
-				  affy:xGeneChip_Array ?platform .
-	}
 }
