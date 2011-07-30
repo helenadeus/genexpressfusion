@@ -16,13 +16,17 @@ prefix affy: <http://bio2rdf.org/ns/affymetrix#>
 PREFIX fn: <http://www.w3.org/2005/xpath-functions>
 
 CONSTRUCT { 
-?experiment a experiment: .
+?experiment a experiment: ;
+			rdfs:label ?experimentName ;
+			modelOrganism: ?modelOrganism .
 
 
 }
 WHERE {
 	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
-		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> .
+		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
+				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism ;
+				rdfs:label ?experimentName .
 	}
 
 	
