@@ -22,10 +22,10 @@ CONSTRUCT {
 			result: ?resultSet ;
 			platform: ?platform .
 
-?resultSet gene: ?gene . 
-?resultSet differential_expression: ?expression .
+//?resultSet gene: ?gene . 
+//?resultSet differential_expression: ?expression .
 
-?gene a gene: ; chromosomeLocation: ?chromosomeLocation ; rdfs:label ?geneSymbol .
+//?gene a gene: ; chromosomeLocation: ?chromosomeLocation ; rdfs:label ?geneSymbol .
 
 }
 WHERE {
@@ -46,20 +46,20 @@ WHERE {
 		 
 	}
 
-			
-	{ ?foldChange rdf:type biordf:fold_change; 
-				  rdf:value ?diffexpression
-				filter (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression) .	} 
-	UNION 
-	{ ?foldChange rdf:type biordf:fold_change; 
-					rdf:value ?diffexpression
-				 filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) . }
-
-	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
-	
-	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
-			?probeuri affy:xEnsembl ?gene ;
-                  affy:Chromosomal_Location ?chromosomeLocation ;
-				  affy:xGeneChip_Array ?platform .
-	}
+//			
+//	{ ?foldChange rdf:type biordf:fold_change; 
+//				  rdf:value ?diffexpression
+//				filter (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression) .	} 
+//	UNION 
+//	{ ?foldChange rdf:type biordf:fold_change; 
+//					rdf:value ?diffexpression
+//				 filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) . }
+//
+//	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+//	
+//	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
+//			?probeuri affy:xEnsembl ?gene ;
+//                  affy:Chromosomal_Location ?chromosomeLocation ;
+//				  affy:xGeneChip_Array ?platform .
+//	}
 }
