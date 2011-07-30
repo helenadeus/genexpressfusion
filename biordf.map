@@ -55,9 +55,7 @@ WHERE {
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	
-	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
-			?probeuri affy:xEnsembl ?gene ;
-                  affy:Chromosomal_Location ?chromosomeLocation ;
+	?probeuri affy:xEnsembl ?gene ;
+            affy:Chromosomal_Location ?chromosomeLocation ;
 				  affy:xGeneChip_Array ?platform .
-	}
 }
