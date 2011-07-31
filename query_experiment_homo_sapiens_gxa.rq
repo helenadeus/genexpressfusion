@@ -13,7 +13,6 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions>
 select * where {
 SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
 ?experiment a experiment: ;
-		rdfs:label ?experimentName ;
 		modelOrganism: "Homo sapiens" .
 }
 }
