@@ -13,7 +13,5 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions>
 select * where {
 ?experiment a experiment: ;
 		rdfs:label ?experimentName ;
-		modelOrganism: "Homo sapiens" ;
-		result: ?resultSet ;
-		platform: ?platform .
+		modelOrganism: "Homo sapiens" .
 }
