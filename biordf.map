@@ -57,5 +57,5 @@ WHERE {
 	
 	?probeuri affy:xEnsembl ?gene ;
             affy:Chromosomal_Location ?chromosomeLocation ;
-				  affy:xGeneChip_Array ?platform .
+			 affy:xGeneChip_Array ?platform .
 }
