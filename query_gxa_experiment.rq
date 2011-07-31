@@ -1,0 +1,11 @@
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
+
+select *
+WHERE {
+	SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
+		?experiment	a	<http://www.ebi.ac.uk/efo/EFO_0004033> ;
+				modelOrganism: ?modelOrganism  .
+}
+filter regex(?modelOrganism, "Mus musculus", "i")
+}
