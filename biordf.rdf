@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:ns0="http://purl.obolibrary.org/obo/"
+  xmlns:ns1="http://mged.sourceforge.net/ontologies/MGEDOntology.owl#"
+  xmlns:ns2="http://www.ebi.ac.uk/efo/"
+  xmlns:ns3="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:ns4="http://www.geneontology.org/go#">
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment1">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+    <ns0:OBI_0100026>Homo sapiens</ns0:OBI_0100026>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set3"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set140"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set157"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set179"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set234"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set240"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133A"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133_Plus_Set"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_2.0_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133_Plus_2.0_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_Focus_Array"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set3">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000107518"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000107518">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>KIAA0534</ns3:label>
+    <ns4:0050000>chr10q26</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set140">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000132334"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000132334">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>PTPRE</ns3:label>
+    <ns4:0050000>chr10q26</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set157">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000102038"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000102038">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>SMARCA1</ns3:label>
+    <ns4:0050000>chrXq25</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set179">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000104888"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000104888">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>SLC17A7</ns3:label>
+    <ns4:0050000>chr19q13</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set234">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000070729"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000070729">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>CNGB1</ns3:label>
+    <ns4:0050000>chr16q13</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set240">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000120251"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000120251">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>GRIA2</ns3:label>
+    <ns4:0050000>chr4q32-q33</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment2">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+    <ns0:OBI_0100026>Homo sapiens</ns0:OBI_0100026>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set290"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set392"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set494"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set596"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set698"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set800"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133A"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133_Plus_Set"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_Focus_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_2.0_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133_Plus_2.0_Array"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set290">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000123560">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>PLP1</ns3:label>
+    <ns4:0050000>chrXq22</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set392">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set494">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set596">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set698">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set800">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000123560"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment3">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+    <ns0:OBI_0100026>Homo sapiens</ns0:OBI_0100026>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set913"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set915"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set945"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1071"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1114"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1116"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1146"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1272"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1315"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1317"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1347"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1473"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1516"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1518"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1548"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1674"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1717"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1719"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1749"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1875"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1918"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1920"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1950"/>
+    <ns1:Result rdf:resource="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set2076"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133A"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133_Plus_Set"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_Focus_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_2.0_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133A_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133_Plus_2.0_Array"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:HT_Human_Genome_U133B"/>
+    <ns0:OBI_0000052 rdf:resource="http://bio2rdf.org/affymetrix:Human_Genome_U133B_Array"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set913">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000178741">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>COX5A</ns3:label>
+    <ns4:0050000>chr15q25</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set915">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set945">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000184752">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>NDUFA12</ns3:label>
+    <ns4:0050000>chr12q22</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1071">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://bio2rdf.org/ensembl:ENSG00000130204">
+    <rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0002606"/>
+    <ns3:label>TOMM40</ns3:label>
+    <ns4:0050000>chr19q13</ns4:0050000>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1114">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1116">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1146">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1272">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1315">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1317">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1347">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1473">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1516">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1518">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1548">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1674">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1717">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1719">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1749">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1875">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>UP</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1918">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1920">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000178741"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set1950">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000184752"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://purl.org/net/biordfmicroarray/ns#microarray_experiment_set2076">
+    <ns2:EFO_0002606 rdf:resource="http://bio2rdf.org/ensembl:ENSG00000130204"/>
+    <ns2:EFO_0004034>DOWN</ns2:EFO_0004034>
+  </rdf:Description>
+
+</rdf:RDF>
