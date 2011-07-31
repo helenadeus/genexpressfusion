@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>SPARQL Query Results</title>
+    <style type="text/css" media="screen">
+/*<![CDATA[*/
+code {
+  font-weight: bold;
+  }
+
+#requery {
+  margin-top:-1em;
+}
+
+#edit {
+  border:1px solid #000;
+  padding: 1em;
+  background-color: #eee;
+  font-size: smaller;
+  }
+
+#results {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
+  }
+#results td, #results th {
+  font-size:1.2em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  }
+#results th {
+  font-size:1.4em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#fff;
+  }
+#results tr.even td {
+  color:#000;
+  background-color:#EAF2D3;
+  }
+/*]]>*/
+    </style>
+
+    <script language="javascript" type="text/javascript">
+<!--
+    window.onload=function(){
+	toggleDisplay('requery');
+	var query = document.getElementById('requery');
+	var p = document.createElement('p');
+	document.body.insertBefore(p, query);
+	var input = document.createElement('input');
+	input.setAttribute('type', 'checkbox');
+	input.setAttribute('onclick', 'toggleDisplay("requery")');
+	p.appendChild(input);
+	p.appendChild(document.createTextNode(" display query"));
+    };
+    function toggleDisplay(element){
+	s = document.getElementById(element).style
+	if(s.display == 'none')
+	    s.display = 'block';
+	else
+	    s.display = 'none';
+    }
+    function modify(id){
+	var path = document.getElementById(id + "_form").getAttribute("action");
+	var tr = document.getElementById(id);
+	var q = document.getElementById(id + "_query");
+	var del = q.value;
+	var off = q.value.indexOf(";")
+	if (off != -1)
+	    del = del.substr(0, off);
+
+	var ns = document.getElementById(id + '_0').childNodes[0].nodeValue;
+	var np = document.getElementById(id + '_1').childNodes[0].nodeValue;
+	var no = document.getElementById(id + '_2').childNodes[0].nodeValue;
+
+	q.value = del + "; INSERT DATA { " + ns + " " + np + " " + no + " }";
+	document.getElementById(id + "_submit").value = "modify";
+    }
+    function copy (from, to) {
+	var children = document.getElementById(from).childNodes;
+	var q = "";
+	for (var i = 0; i < children.length; i++) {
+	    if (children[i].nodeValue != null)
+		q = q + children[i].nodeValue + "\n";
+	}
+	document.getElementById(to).value = q;
+    }
+-->
+    </script>
+  </head>
+  <body>
+    <h1>SPARQL Query Results</h1>
+<div id="requery">
+  <pre contenteditable="true" id="edit" style="display:block; float:left;">PREFIX experiment: &lt;http://www.ebi.ac.uk/efo/EFO_0004033&gt;
+PREFIX gene: &lt;http://www.ebi.ac.uk/efo/EFO_0002606&gt;
+PREFIX sample: &lt;http://www.ebi.ac.uk/efo/EFO_0001434&gt;
+PREFIX modelOrganism: &lt;http://purl.obolibrary.org/obo/OBI_0100026&gt;
+PREFIX differential_expression: &lt;http://www.ebi.ac.uk/efo/EFO_0004034&gt;
+PREFIX result: &lt;http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result&gt;
+PREFIX chromosomeLocation: &lt;http://www.geneontology.org/go#0050000&gt;
+PREFIX platform: &lt;http://purl.obolibrary.org/obo/OBI_0000052&gt;
+PREFIX mged: &lt;http://mged.sourceforge.net/ontologies/MGEDontology.php#&gt;
+PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX biordf: &lt;http://purl.org/net/biordfmicroarray/ns#&gt;
+PREFIX stat: &lt;http://purl.org/net/biordfmicroarray/ns#&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+prefix affy: &lt;http://bio2rdf.org/ns/affymetrix#&gt;
+PREFIX fn: &lt;http://www.w3.org/2005/xpath-functions#&gt;
+select * where {
+SERVICE &lt;http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray&gt; {
+?geneLocal a &lt;http://purl.org/net/biordfmicroarray/ns#gene&gt; ;
+			stat:probe_set_id ?probeid ;
+			rdfs:label	?geneSymbol .
+}
+BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+?probeuri affy:xEnsembl ?gene .
+}
+</pre>
+  <form action="sw" method="get">
+    <p>
+      <input id="query" name="query" type="hidden" value=""/>
+      <input name="media" type="hidden" value="edit"/>
+      <input onclick="copy('edit', 'query')" style="margin: 2em;" type="submit" value="re-query"/>
+    </p>
+  </form>
+</div>
+<table class="tablesorter" id="results">
+  <thead>
+    <tr>
+      <th>?gene</th>
+      <th>?geneLocal</th>
+      <th>?geneSymbol</th>
+      <th>?probeid</th>
+      <th>?probeuri</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000107518&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene3&gt;</td>
+      <td>"KIAA0534"</td>
+      <td>"213745_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:213745_at&gt;</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000132334&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene140&gt;</td>
+      <td>"PTPRE"</td>
+      <td>"221840_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:221840_at&gt;</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000102038&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene157&gt;</td>
+      <td>"SMARCA1"</td>
+      <td>"215294_s_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:215294_s_at&gt;</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000104888&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene179&gt;</td>
+      <td>"SLC17A7"</td>
+      <td>"204229_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:204229_at&gt;</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000070729&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene234&gt;</td>
+      <td>"CNGB1"</td>
+      <td>"207342_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:207342_at&gt;</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000120251&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene240&gt;</td>
+      <td>"GRIA2"</td>
+      <td>"205358_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:205358_at&gt;</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000123560&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene290&gt;</td>
+      <td>"PLP1"</td>
+      <td>"210198_s_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:210198_s_at&gt;</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000178741&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene403&gt;</td>
+      <td>"COX5A"</td>
+      <td>"203663_s_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:203663_s_at&gt;</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000178741&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene405&gt;</td>
+      <td>"COX5A"</td>
+      <td>"229426_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:229426_at&gt;</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000184752&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene435&gt;</td>
+      <td>"NDUFA12"</td>
+      <td>"223244_s_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:223244_s_at&gt;</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSG00000130204&gt;</td>
+      <td>&lt;http://purl.org/net/biordfmicroarray/ns#gene561&gt;</td>
+      <td>"TOMM40"</td>
+      <td>"202264_s_at"</td>
+      <td>&lt;http://bio2rdf.org/affymetrix:202264_s_at&gt;</td>
+    </tr>
+  </tbody>
+</table>
+  </body>
+</html>

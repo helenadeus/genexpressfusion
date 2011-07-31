@@ -20,6 +20,9 @@ CONSTRUCT {
 			rdfs:label ?experimentName ;
 			modelOrganism: ?modelOrganism ;
 			result: ?resultSet .
+
+?resultSet result: ?gene .
+?gene a gene: .
 }
 WHERE {
 	SERVICE <http://wwwdev.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
