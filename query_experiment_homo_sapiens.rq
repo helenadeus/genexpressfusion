@@ -1,0 +1,19 @@
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+PREFIX sample: <http://www.ebi.ac.uk/efo/EFO_0001434>
+PREFIX result: <http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result>
+PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
+PREFIX platform: <http://purl.obolibrary.org/obo/OBI_0000052>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions>
+
+
+select * where {
+?experiment a experiment: ;
+		rdfs:label ?experimentName ;
+		modelOrganism: "Homo sapiens" ;
+		result: ?resultSet ;
+		platform: ?platform .
+}
