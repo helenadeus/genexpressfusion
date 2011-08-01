@@ -1,5 +1,7 @@
 PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
 PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
+PREFIX result: <http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT { 
 ?experiment a experiment: ;
