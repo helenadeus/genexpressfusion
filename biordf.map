@@ -33,6 +33,8 @@ CONSTRUCT {
 
 }
 WHERE {
+  {
+    {
 	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
 		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
 				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
@@ -47,15 +49,33 @@ WHERE {
 
 		?geneL stat:probe_set_id ?probeid .
 		?geneL rdfs:label	?geneSymbol .
+		FILTER (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression)
+		BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+	}
+  }
+  UNION
+  {
+	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
+		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
+				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
 
+				OPTIONAL { ?experiment rdfs:label ?experimentName . }
+		?resultSet <http://purl.org/dc/terms/isPartOf>   ?experiment .
+		?resultSet <http://purl.org/net/biordfmicroarray/ns#differentially_expressed_gene> ?geneL .
+		?resultSet <http://purl.org/net/biordfmicroarray/ns#has_ouput_value>	 ?foldChange .
 
-				
+		?foldChange rdf:type biordf:fold_change .
+		?foldChange  rdf:value ?diffexpression .
+
+		?geneL stat:probe_set_id ?probeid .
+		?geneL rdfs:label	?geneSymbol .
+		FILTER (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression)
+		BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+	}
+  }
 }
-	{ filter (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression) 	} 
-	UNION 
-	{ filter (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression) }
 
-	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+#	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	?probeuri affy:xEnsembl ?gene .
 	?probeuri affy:Chromosomal_Location ?chromosomeLocation .
 	?probeuri  affy:xGeneChip_Array ?platform .
