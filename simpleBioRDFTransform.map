@@ -1,4 +1,5 @@
 PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
 
 CONSTRUCT { 
 ?experiment a experiment: ;
