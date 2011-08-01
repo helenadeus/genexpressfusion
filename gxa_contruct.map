@@ -26,6 +26,7 @@ CONSTRUCT {
 
 }
 WHERE {
+	
 		?experiment	a	<http://www.ebi.ac.uk/efo/EFO_0004033> ;
 				modelOrganism: ?modelOrganism ;
 				<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
@@ -33,5 +34,7 @@ WHERE {
 		 OPTIONAL {  ?experiment rdfs:label ?experimentName }
 		?resultSet gene: ?geneL .
 		?resultSet differential_expression: ?expression .
-		BIND(IRI(fn:concat("http://bio2rdf.org/ensembl:", (fn:substring(xsd:string(?geneL), 39)))) as ?gene)
+	
+	FILTER (?expression = "UP" || ?expression = "DOWN")
+	BIND(IRI(fn:concat("http://bio2rdf.org/ensembl:", (fn:substring(xsd:string(?geneL), 39)))) as ?gene)
 }
