@@ -24,3 +24,4 @@ WHERE {
 
 				OPTIONAL { ?experiment rdfs:label ?experimentName . }
 }
+}
