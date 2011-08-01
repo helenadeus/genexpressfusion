@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells Wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-1-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells C/EBPa knockout Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-2-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells C/EBPa knockout Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/fetal-ksl-cells-rep-3-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Fetal KSL cells C/EBPa knockout Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-lt-hsc-ctl-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-lt-hsc-ctl-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-lt-hsc-ko-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC C/EBPa knockout Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-lt-hsc-ko-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC C/EBPa knockout Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/st-hsc-st-hsc-ctl-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">ST-HSC Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/st-hsc-st-hsc-ctl-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">ST-HSC Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/st-hsc-st-hsc-ko-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">ST-HSC C/EBPa knockout Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/st-hsc-st-hsc-ko-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">ST-HSC C/EBPa knockout Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-3-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors acute myeloid leukemia Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-2-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors acute myeloid leukemia Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mac1c-kit-progenitors-rep-1-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Mac1+c-Kit+ progenitors acute myeloid leukemia Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Sorted Cells WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Sorted Cells WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Sorted Cells WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-2-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Sorted Cells KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-1-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Sorted Cells KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-7">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-8">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-8">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-9">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-6">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-7">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-rep-2-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Adult KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-rep-1-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Adult KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Adult WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Adult WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-treated-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole adult treated Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-treated-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole adult treated Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-untreated-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole adult untreated Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-adult-untreated-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole adult untreated Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-old-rep-5">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (old) Wild Type Rep #5</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-old-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (old) Wild Type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-old-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (old) Wild Type Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-old-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (old) Wild Type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-old-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (old) Wild Type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-young-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (young) Wild Type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-young-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (young) Wild Type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-young-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC (young) Wild Type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mep-cells-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">MEP cells Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mep-cells-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">MEP cells Wild type Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/mep-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">MEP cells Wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-5">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #5</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/l-gmp-rep-6">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">L-GMP Rep #6</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/hsc-cells-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">HSC cells Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/hsc-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">HSC cells Wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/hsc-cells-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">HSC cells Wild type Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/hsc-cells-rep-5">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">HSC cells Wild type Rep #5</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/hsc-cells-rep-6">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">HSC cells Wild type Rep #6</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/gmp-cells-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">GMP cells Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/gmp-cells-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">GMP cells Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/gmp-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">GMP cells Wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/gmp-cells-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">GMP cells Wild type Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/cmp-cells-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">CMP cells Wild type Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/cmp-cells-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">CMP cells Wild type Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/cmp-cells-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">CMP cells Wild type Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/cmp-cells-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">CMP cells Wild type Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430A 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-11">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-5">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-11">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-12">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-6">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-12">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-13">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-13">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-14">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-14">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-15">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3z">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #3z</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-15">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-16">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-7">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-16">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-17">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-8">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-17">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-18">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-18">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-9">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-1-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-2-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-3-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-4">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells KO Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-5">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells KO Rep #5</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-5-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells WT Rep #5</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-4-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells WT Rep #4</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-3-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-2-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/sorted-cells-rep-1-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">sorted cells WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-10">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-19">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-19">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-11">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-20">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-20">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-12">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-21">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-21">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-13">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-22">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-22">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">Whole Embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-23">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-23">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-14">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-3-15">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-2-24">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/whole-embryo-rep-1-24">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">whole embryo WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Danio rerio</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Zebrafish Genome Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-rep-3">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC WT Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-rep-2">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC WT Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-rep-1">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC WT Rep #1</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-rep-3-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC KO Rep #3</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://bloodprogram.hsci.harvard.edu/bioassay/lt-hsc-rep-2-0">
+	<rdf:type rdf:resource="http://www.ebi.ac.uk/efo/EFO_0004033"/>
+	<label xmlns="http://www.w3.org/2000/01/rdf-schema#">LT-HSC KO Rep #2</label>
+	<OBI_0100026 xmlns="http://purl.obolibrary.org/obo/">Mus musculus</OBI_0100026>
+	<OBI_0000052 xmlns="http://purl.obolibrary.org/obo/">Mouse Genome 430 2.0 Array</OBI_0000052>
+</rdf:Description>
+
+</rdf:RDF>

@@ -22,26 +22,18 @@ CONSTRUCT {
 		modelOrganism: ?modelOrganism ;
 		platform: ?platform .
 
-
-?sample a sample: ;
-	rdfs:label ?sampleName .
-
-
 }
 
 WHERE {	
 SERVICE <http://bloodprogram.hsci.harvard.edu/sparql> {
 	?experiment        a          <http://mged.sourceforge.net/ontologies/MGEDontology.php#BioAssay> ;
 			<http://purl.org/dc/terms/title>	?experimentName ;
-			mged:platform	?platform ;
-			mged:has_output ?output .
+			mged:platform	?platform .
 	OPTIONAL { ?experiment	result:		?resultSet } .
 
 
 
-	?sample	a	<http://mged.sourceforge.net/ontologies/MGEDontology.php#BioMaterial> ;
-			<http://purl.org/dc/terms/title>	?sampleName ;
-			<http://purl.obolibrary.org/obo/OBI_0000298> ?modelOrganismTaxon .
+	?sample	<http://purl.obolibrary.org/obo/OBI_0000298> ?modelOrganismTaxon .
 
 		
 	}
