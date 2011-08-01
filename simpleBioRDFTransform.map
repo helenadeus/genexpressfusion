@@ -4,9 +4,9 @@ PREFIX result: <http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT { 
-?experiment a experiment: ;
-			modelOrganism: ?modelOrganism ;
-			result: ?resultSet .
+?experiment a experiment: .
+?experiment modelOrganism: ?modelOrganism .
+?experiment result: ?resultSet .
 
 }
 WHERE {
