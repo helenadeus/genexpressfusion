@@ -12,7 +12,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX biordf: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX stat: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-prefix affy: <http://bio2rdf.org/ns/affymetrix#>
+PREFIX affy: <http://bio2rdf.org/ns/affymetrix#>
 PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 

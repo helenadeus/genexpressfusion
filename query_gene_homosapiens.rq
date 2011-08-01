@@ -1,0 +1,6 @@
+select * where {
+	?experiment modelOrganism: ?modelOrganism .
+	?experiment result: ?resultSet .
+	?resultSet gene: ?gene .
+	filter regex(?modelOrganism, "homo sapiens", "i");
+}
