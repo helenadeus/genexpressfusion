@@ -1,12 +1,18 @@
 PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
 
 CONSTRUCT { 
-?experiment a experiment: .
+?experiment a experiment: ;
+			modelOrganism: ?modelOrganism ;
+			result: ?resultSet .
 
 }
 WHERE {
 	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
-		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> .				
+		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
+				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
+
+				OPTIONAL { ?experiment rdfs:label ?experimentName . }
+		?resultSet <http://purl.org/dc/terms/isPartOf>   ?experiment .			
 }
 
 }
