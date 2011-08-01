@@ -20,8 +20,6 @@ CONSTRUCT {
 
 }
 WHERE {
-	SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
-		?gene gene: ?geneL .
-	}
+	?gene gene: ?geneL .
 	BIND(IRI(fn:concat("http://bio2rdf.org/ensembl:", (fn:substring(xsd:string(?geneL), 39)))) as ?gene)
 }
