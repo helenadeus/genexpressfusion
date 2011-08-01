@@ -1,6 +1,13 @@
-select * where {
-	?experiment modelOrganism: ?modelOrganism .
-	?experiment result: ?resultSet .
-	?resultSet gene: ?gene .
-	filter regex(?modelOrganism, "homo sapiens", "i");
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
+REFIX result: <http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result>
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+
+SELECT * WHERE {
+?experiment a experiment: ;  
+	modelOrganism: ?modelOrganism ;
+	result: ?resultSet .
+
+?resultSet gene: ?gene .
+filter regex(?modelOrganism, "homo sapiens", "i")
 }

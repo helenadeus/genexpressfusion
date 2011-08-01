@@ -1,0 +1,26 @@
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+prefix affy: <http://bio2rdf.org/ns/affymetrix#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+select ?gene where {
+{
+ SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
+            ?gene1 a <http://purl.org/net/biordfmicroarray/ns#gene> ;
+                   <http://purl.org/net/biordfmicroarray/ns#probe_set_id> ?probeid .
+}
+BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+?probeuri affy:xEnsembl ?gene .
+}
+UNION 
+{
+SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
+		?gene2 a gene: .
+	}
+BIND(IRI(fn:concat("http://bio2rdf.org/ensembl:", (fn:substring(xsd:string(?gene2), 39)))) as ?gene)
+}
+
+} 
+
+LIMIT 100
