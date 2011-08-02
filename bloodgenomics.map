@@ -8,7 +8,7 @@ PREFIX chromosomeLocation: <http://www.geneontology.org/go#0050000>
 PREFIX platform: <http://purl.obolibrary.org/obo/OBI_0000052>
 PREFIX mged: <http://mged.sourceforge.net/ontologies/MGEDontology.php#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX biordf: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX stat: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -28,11 +28,9 @@ WHERE {
 SERVICE <http://bloodprogram.hsci.harvard.edu/sparql> {
 	?experiment        a          <http://mged.sourceforge.net/ontologies/MGEDontology.php#BioAssay> ;
 			<http://purl.org/dc/terms/title>	?experimentName ;
-			mged:platform	?platform .
-	OPTIONAL { ?experiment	result:		?resultSet } .
-
-
-
+			mged:platform	?platform ;
+			<http://www.obofoundry.org/ro/ro.owl#has_participant> ?sample .
+	
 	?sample	<http://purl.obolibrary.org/obo/OBI_0000298> ?modelOrganismTaxon .
 
 		

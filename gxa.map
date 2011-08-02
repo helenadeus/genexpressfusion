@@ -3,7 +3,7 @@ PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
 PREFIX sample: <http://www.ebi.ac.uk/efo/EFO_0001434>
 PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
 PREFIX differential_expression: <http://www.ebi.ac.uk/efo/EFO_0004034>
-PREFIX result: <http://mged.sourceforge.net/ontologies/MGEDOntology.owl#Result>
+PREFIX result: <http://purl.obolibrary.org/obo/IAO_0000136>
 PREFIX chromosomeLocation: <http://www.geneontology.org/go#0050000>
 PREFIX platform: <http://purl.obolibrary.org/obo/OBI_0000052>
 PREFIX mged: <http://mged.sourceforge.net/ontologies/MGEDontology.php#>
@@ -16,10 +16,9 @@ prefix affy: <http://bio2rdf.org/ns/affymetrix#>
 PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 
-?experiment a experiment: ;
-			modelOrganism: ?modelOrganism ;
-			result: ?resultSet .
-
+?experiment a experiment: .
+?experiment modelOrganism: ?modelOrganism .
+?experiment result: ?resultSet .
 ?resultSet gene: ?gene .
 ?resultSet differential_expression: ?expression .
 
@@ -31,7 +30,7 @@ WHERE {
 				modelOrganism: ?modelOrganism ;
 				<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
 
-		 OPTIONAL {  ?experiment rdfs:label ?experimentName }
+		
 		?resultSet gene: ?geneL .
 		?resultSet differential_expression: ?expression .
 	}

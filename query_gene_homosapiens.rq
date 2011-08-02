@@ -11,3 +11,4 @@ SELECT * WHERE {
 ?resultSet gene: ?gene .
 filter regex(?modelOrganism, "homo sapiens", "i")
 }
+limit 100

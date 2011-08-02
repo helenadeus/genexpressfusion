@@ -31,7 +31,7 @@ WHERE {
 				modelOrganism: ?modelOrganism ;
 				<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
 
-		 OPTIONAL {  ?experiment rdfs:label ?experimentName }
+		
 		?resultSet gene: ?geneL .
 		?resultSet differential_expression: ?expression .
 	
