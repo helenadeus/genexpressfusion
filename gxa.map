@@ -23,7 +23,6 @@ CONSTRUCT {
 ?resultSet gene: ?gene .
 ?resultSet differential_expression: ?expression .
 
-
 }
 WHERE {
 	SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
