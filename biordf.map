@@ -16,9 +16,9 @@ PREFIX affy: <http://bio2rdf.org/ns/affymetrix#>
 PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 
-?experiment a experiment: ;
-			modelOrganism: ?modelOrganism ;
-			result: ?resultSet .
+?experiment a experiment: .
+?experiment modelOrganism: ?modelOrganism .
+?experiment result: ?resultSet .
 
 ?experiment platform: ?platform .
 

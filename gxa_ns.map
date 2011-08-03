@@ -13,26 +13,27 @@ PREFIX biordf: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX stat: <http://purl.org/net/biordfmicroarray/ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 prefix affy: <http://bio2rdf.org/ns/affymetrix#>
-PREFIX fn: <http://www.w3.org/2005/xpath-functions/#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 
 ?experiment a experiment: .
 ?experiment modelOrganism: ?modelOrganism .
 ?experiment result: ?resultSet .
-?gene a gene: .
 ?resultSet gene: ?gene .
 ?resultSet differential_expression: ?expression .
 
 
 }
 WHERE {
-	?experiment	a	<http://www.ebi.ac.uk/efo/EFO_0004033> .
-	?experiment	modelOrganism: ?modelOrganism .
-	?experiment	<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
-	
-	?resultSet gene: ?geneL .
-	?resultSet differential_expression: ?expression .
-	
+	SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> {
+		?experiment	a	<http://www.ebi.ac.uk/efo/EFO_0004033> ;
+				modelOrganism: ?modelOrganism ;
+				<http://purl.obolibrary.org/obo/IAO_0000136> ?resultSet .
+
+		
+		?resultSet gene: ?geneL .
+		?resultSet differential_expression: ?expression .
+	}
 	FILTER (?expression = "UP" || ?expression = "DOWN")
 	BIND(IRI(fn:concat("http://bio2rdf.org/ensembl:", (fn:substring(xsd:string(?geneL), 39)))) as ?gene)
 }
