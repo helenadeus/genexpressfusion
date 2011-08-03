@@ -6,10 +6,8 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions/#>
 PREFIX differential_expression: <http://www.ebi.ac.uk/efo/EFO_0004034>
 
 SELECT (IRI(concat("http://bio2rdf.org/ensembl:", (substr(str(?geneL), 39)))) as ?gene) ?expression WHERE {
-SERVICE <http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa> { 
 <http://www.ebi.ac.uk/gxa/experiment/E-CBIL-22> result: ?resultSet .
 ?resultSet gene: ?geneL .
 ?resultSet differential_expression: ?expression .
 FILTER (?expression = "UP" || ?expression = "DOWN")
-}
 }
