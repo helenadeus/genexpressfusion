@@ -35,7 +35,7 @@ CONSTRUCT {
 WHERE {
   {
     {
-	SERVICE <http://vmdhcls04.deri.ie/arc/bio2rdf.php> {
+	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
 		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
 				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
 
