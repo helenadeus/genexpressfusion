@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>SPARQL Query Results</title>
+    <style type="text/css" media="screen">
+/*<![CDATA[*/
+code {
+  font-weight: bold;
+  }
+
+#requery {
+  margin-top:-1em;
+}
+
+#edit {
+  border:1px solid #000;
+  padding: 1em;
+  background-color: #eee;
+  font-size: smaller;
+  }
+
+#results {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
+  }
+#results td, #results th {
+  font-size:1.2em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  }
+#results th {
+  font-size:1.4em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#fff;
+  }
+#results tr.even td {
+  color:#000;
+  background-color:#EAF2D3;
+  }
+/*]]>*/
+    </style>
+
+    <script language="javascript" type="text/javascript">
+<!--
+    window.onload=function(){
+	toggleDisplay('requery');
+	var query = document.getElementById('requery');
+	var p = document.createElement('p');
+	document.body.insertBefore(p, query);
+	var input = document.createElement('input');
+	input.setAttribute('type', 'checkbox');
+	input.setAttribute('onclick', 'toggleDisplay("requery")');
+	p.appendChild(input);
+	p.appendChild(document.createTextNode(" display query"));
+    };
+    function toggleDisplay(element){
+	s = document.getElementById(element).style
+	if(s.display == 'none')
+	    s.display = 'block';
+	else
+	    s.display = 'none';
+    }
+    function modify(id){
+	var path = document.getElementById(id + "_form").getAttribute("action");
+	var tr = document.getElementById(id);
+	var q = document.getElementById(id + "_query");
+	var del = q.value;
+	var off = q.value.indexOf(";")
+	if (off != -1)
+	    del = del.substr(0, off);
+
+	var ns = document.getElementById(id + '_0').childNodes[0].nodeValue;
+	var np = document.getElementById(id + '_1').childNodes[0].nodeValue;
+	var no = document.getElementById(id + '_2').childNodes[0].nodeValue;
+
+	q.value = del + "; INSERT DATA { " + ns + " " + np + " " + no + " }";
+	document.getElementById(id + "_submit").value = "modify";
+    }
+    function copy (from, to) {
+	var children = document.getElementById(from).childNodes;
+	var q = "";
+	for (var i = 0; i < children.length; i++) {
+	    if (children[i].nodeValue != null)
+		q = q + children[i].nodeValue + "\n";
+	}
+	document.getElementById(to).value = q;
+    }
+-->
+    </script>
+  </head>
+  <body>
+    <h1>SPARQL Query Results</h1>
+<div id="requery">
+  <pre contenteditable="true" id="edit" style="display:block; float:left;">PREFIX gene: &lt;http://www.ebi.ac.uk/efo/EFO_0002606&gt;
+PREFIX result: &lt;http://purl.obolibrary.org/obo/IAO_0000136&gt;
+PREFIX differential_expression: &lt;http://www.ebi.ac.uk/efo/EFO_0004034&gt;
+SELECT * WHERE {
+	SERVICE &lt;http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa&gt; {
+		?experiment result: ?resultSet .
+		?resultSet gene: &lt;http://www.ensembl.org/Gene/Summary?g=ENSMUSG00000037916&gt; .
+		?resultSet differential_expression: "UP" .
+		?resultSet differential_expression: ?expression .
+	}
+}</pre>
+  <form action="exp" method="get">
+    <p>
+      <input id="query" name="query" type="hidden" value=""/>
+      <input name="media" type="hidden" value="edit"/>
+      <input onclick="copy('edit', 'query')" style="margin: 2em;" type="submit" value="re-query"/>
+    </p>
+  </form>
+</div>
+<table class="tablesorter" id="results">
+  <thead>
+    <tr>
+      <th>?experiment</th>
+      <th>?expression</th>
+      <th>?resultSet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-CBIL-22&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx653005</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791119</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791122</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791124</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791126</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791129</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791131</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791133</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791136</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-17936&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx3791138</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-1886&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx5201016</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-21189&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx8489920</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-21189&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx8489926</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-21189&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx8489932</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-21389&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx9064776</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-2431&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx11067834</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-2899&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx11839806</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-466&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx14693867</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-5668&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx16180598</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-5668&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx16180603</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-5668&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx16180608</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-7032&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18060005</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444850</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444851</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444852</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444853</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444856</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-75&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx18444858</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-GEOD-8505&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx19172636</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036534</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036535</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036538</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036539</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036553</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036554</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036557</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036558</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036572</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036573</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-1649&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx24036576</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MEXP-82&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx28194602</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933929</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933930</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933947</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933948</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933956</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933961</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933967</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933968</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933985</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933986</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933989</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933994</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29933999</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29934009</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29934023</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29934024</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29934029</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-MTAB-76&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx29934032</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613123</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613124</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613139</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613140</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613155</td>
+    </tr>
+    <tr>
+      <td>&lt;http://www.ebi.ac.uk/gxa/experiment/E-TABM-692&gt;</td>
+      <td>"UP"</td>
+      <td>_:node163irabnvx33613156</td>
+    </tr>
+  </tbody>
+</table>
+  </body>
+</html>

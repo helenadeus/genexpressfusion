@@ -1,0 +1,13 @@
+PREFIX stat: <http://purl.org/net/biordfmicroarray/ns#>
+prefix affy: <http://bio2rdf.org/ns/affymetrix#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+select * where { SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray>{
+?geneLocal a <http://purl.org/net/biordfmicroarray/ns#gene> ;
+			stat:probe_set_id ?probeid ;
+			rdfs:label	?geneSymbol .
+}
+
+BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+?probeuri affy:xEnsembl ?gene .
+} 
