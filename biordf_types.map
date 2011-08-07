@@ -32,7 +32,9 @@ SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray>
 
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
-	?probeuri affy:xEnsembl ?gene .
-	?probeuri affy:Chromosomal_Location ?chromosomeLocation .
+	
+	SERVICE <http://affymetrix.bio2rdf.org/sparql> {
+		?probeuri affy:xEnsembl ?gene .
+	}
 	
 }
