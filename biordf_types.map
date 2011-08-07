@@ -1,0 +1,38 @@
+PREFIX experiment: <http://www.ebi.ac.uk/efo/EFO_0004033>
+PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
+PREFIX sample: <http://www.ebi.ac.uk/efo/EFO_0001434>
+PREFIX modelOrganism: <http://purl.obolibrary.org/obo/OBI_0100026>
+PREFIX differential_expression: <http://www.ebi.ac.uk/efo/EFO_0004034>
+PREFIX result: <http://purl.obolibrary.org/obo/IAO_0000136>
+PREFIX chromosomeLocation: <http://www.geneontology.org/go#0050000>
+PREFIX platform: <http://purl.obolibrary.org/obo/OBI_0000052>
+PREFIX mged: <http://mged.sourceforge.net/ontologies/MGEDontology.php#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX biordf: <http://purl.org/net/biordfmicroarray/ns#>
+PREFIX stat: <http://purl.org/net/biordfmicroarray/ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX affy: <http://bio2rdf.org/ns/affymetrix#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
+
+CONSTRUCT { 
+?experiment a experiment: .
+?gene  a gene: .
+}
+WHERE {
+ 
+SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
+?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> .
+?geneL a biordf:gene .
+?geneL stat:probe_set_id ?probeid .
+?geneL rdfs:label	?geneSymbol .
+
+		
+	}
+
+
+	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
+	?probeuri affy:xEnsembl ?gene .
+	?probeuri affy:Chromosomal_Location ?chromosomeLocation .
+	
+}
