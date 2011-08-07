@@ -17,10 +17,10 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 
 CONSTRUCT { 
-?experiment a experiment: ;
-		rdfs:label ?experimentName ;
-		modelOrganism: ?modelOrganism ;
-		platform: ?platform .
+?experiment a experiment: .
+?experiment 	rdfs:label ?experimentName .
+?experiment		modelOrganism: ?modelOrganism .
+?experiment		platform: ?platform .
 
 }
 
