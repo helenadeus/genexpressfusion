@@ -20,4 +20,5 @@ SELECT (IRI(concat("http://bio2rdf.org/ensembl:", (substr(str(?geneL), 39)))) as
 		?resultSet differential_expression: ?expression .
         }
       }
+
 }
