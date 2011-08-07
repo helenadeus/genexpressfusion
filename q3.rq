@@ -7,8 +7,8 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT * WHERE {
             ?experiment a experiment: ;
-				rdfs:label ?experimentName ;
 				modelOrganism: ?modelOrganism .
+OPTIONAL {  ?experiment rdfs:label ?experimentName . }
 OPTIONAL {  ?experiment result: ?resultSet }
 OPTIONAL {  ?experiment platform: ?platform }
 }
