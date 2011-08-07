@@ -47,6 +47,7 @@ WHERE {
 		?foldChange rdf:type biordf:fold_change .
 		?foldChange  rdf:value ?diffexpression .
 
+		?geneL a biordf:gene .
 		?geneL stat:probe_set_id ?probeid .
 		?geneL rdfs:label	?geneSymbol .
 		FILTER (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression)

@@ -1,7 +1,7 @@
 PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
 PREFIX affy: <http://bio2rdf.org/ns/affymetrix#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-SELECT * 
+SELECT ?gene 
 WHERE {	
 ?gene        a         gene: .
 } 
