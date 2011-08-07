@@ -1,6 +1,6 @@
 PREFIX gene: <http://www.ebi.ac.uk/efo/EFO_0002606>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX fn: <http://www.w3.org/2005/xpath-functions/#>
+PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 
 ?gene a gene: .
