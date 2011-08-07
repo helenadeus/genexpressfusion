@@ -20,7 +20,7 @@ CONSTRUCT {
 ?experiment rdfs:label ?experimentName .
 ?experiment modelOrganism: ?modelOrganism .
 ?experiment result: ?resultSet .
-
+?experiment platform: ?platform .
 
 ?resultSet gene: ?gene .
 ?resultSet differential_expression: ?expression .
@@ -61,6 +61,6 @@ FILTER (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression)
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	?probeuri affy:xEnsembl ?gene .
-	
+	?probeuri  affy:xGeneChip_Array ?platform .
 	
 }
