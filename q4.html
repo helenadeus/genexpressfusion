@@ -1,0 +1,4471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>SPARQL Query Results</title>
+    <style type="text/css" media="screen">
+/*<![CDATA[*/
+code {
+  font-weight: bold;
+  }
+
+#requery {
+  margin-top:-1em;
+}
+
+#edit {
+  border:1px solid #000;
+  padding: 1em;
+  background-color: #eee;
+  font-size: smaller;
+  }
+
+#results {
+  font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+  width:100%;
+  border-collapse:collapse;
+  }
+#results td, #results th {
+  font-size:1.2em;
+  border:1px solid #98bf21;
+  padding:3px 7px 2px 7px;
+  }
+#results th {
+  font-size:1.4em;
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:#A7C942;
+  color:#fff;
+  }
+#results tr.even td {
+  color:#000;
+  background-color:#EAF2D3;
+  }
+/*]]>*/
+    </style>
+
+    <script language="javascript" type="text/javascript">
+<!--
+    window.onload=function(){
+	toggleDisplay('requery');
+	var query = document.getElementById('requery');
+	var p = document.createElement('p');
+	document.body.insertBefore(p, query);
+	var input = document.createElement('input');
+	input.setAttribute('type', 'checkbox');
+	input.setAttribute('onclick', 'toggleDisplay("requery")');
+	p.appendChild(input);
+	p.appendChild(document.createTextNode(" display query"));
+    };
+    function toggleDisplay(element){
+	s = document.getElementById(element).style
+	if(s.display == 'none')
+	    s.display = 'block';
+	else
+	    s.display = 'none';
+    }
+    function modify(id){
+	var path = document.getElementById(id + "_form").getAttribute("action");
+	var tr = document.getElementById(id);
+	var q = document.getElementById(id + "_query");
+	var del = q.value;
+	var off = q.value.indexOf(";")
+	if (off != -1)
+	    del = del.substr(0, off);
+
+	var ns = document.getElementById(id + '_0').childNodes[0].nodeValue;
+	var np = document.getElementById(id + '_1').childNodes[0].nodeValue;
+	var no = document.getElementById(id + '_2').childNodes[0].nodeValue;
+
+	q.value = del + "; INSERT DATA { " + ns + " " + np + " " + no + " }";
+	document.getElementById(id + "_submit").value = "modify";
+    }
+    function copy (from, to) {
+	var children = document.getElementById(from).childNodes;
+	var q = "";
+	for (var i = 0; i < children.length; i++) {
+	    if (children[i].nodeValue != null)
+		q = q + children[i].nodeValue + "\n";
+	}
+	document.getElementById(to).value = q;
+    }
+-->
+    </script>
+  </head>
+  <body>
+    <h1>SPARQL Query Results</h1>
+<div id="requery">
+  <pre contenteditable="true" id="edit" style="display:block; float:left;">PREFIX gene: &lt;http://www.ebi.ac.uk/efo/EFO_0002606&gt;
+PREFIX result: &lt;http://purl.obolibrary.org/obo/IAO_0000136&gt;
+PREFIX platform: &lt;http://purl.obolibrary.org/obo/OBI_0000052&gt;
+PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
+PREFIX fn: &lt;http://www.w3.org/2005/xpath-functions/&gt;
+PREFIX differential_expression: &lt;http://www.ebi.ac.uk/efo/EFO_0004034&gt;
+
+SELECT (IRI(concat("http://bio2rdf.org/ensembl:", (substr(str(?geneL), 39)))) as ?gene) ?expression WHERE { 
+
+     SERVICE &lt;http://www.ebi.ac.uk/microarray-srv/openrdf-sesame/repositories/gxa&gt; {
+	&lt;http://www.ebi.ac.uk/gxa/experiment/E-CBIL-22&gt; result: ?resultSet .
+	?resultSet gene: ?geneL .
+	
+	{	?resultSet differential_expression: "UP" .
+		?resultSet differential_expression: ?expression .
+        }
+         UNION 
+        {
+		?resultSet differential_expression: "DOWN" .
+		?resultSet differential_expression: ?expression .
+        }
+      }
+
+}</pre>
+  <form action="exp" method="get">
+    <p>
+      <input id="query" name="query" type="hidden" value=""/>
+      <input name="media" type="hidden" value="edit"/>
+      <input onclick="copy('edit', 'query')" style="margin: 2em;" type="submit" value="re-query"/>
+    </p>
+  </form>
+</div>
+<table class="tablesorter" id="results">
+  <thead>
+    <tr>
+      <th>?gene</th>
+      <th>?expression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037916&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037916&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027513&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027513&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038695&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038695&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032648&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032648&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027510&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027510&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025791&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025791&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025792&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025792&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032504&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032504&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032504&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032504&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016194&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016194&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019370&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019370&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019370&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019370&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033065&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033065&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048856&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048856&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022261&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022261&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025488&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025488&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020122&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025510&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025510&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025510&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025510&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052974&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052974&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035199&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035199&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001508&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001508&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001508&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001508&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035296&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035296&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001506&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001506&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001506&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001506&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033629&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033629&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033629&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033629&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000047631&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000047631&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030630&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030630&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006457&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006457&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059325&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059325&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027447&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027447&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029695&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029695&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028307&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028307&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028307&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028307&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024381&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024381&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024381&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024381&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026272&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026272&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024247&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024247&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000070594&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000070594&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024386&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024386&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039197&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039197&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039196&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039196&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000008540&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000008540&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019088&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019088&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048832&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048832&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000067235&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000067235&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006373&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006373&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000530&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000530&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000530&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000530&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068614&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068614&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068614&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068614&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006676&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006676&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006676&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006676&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053279&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053279&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019987&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019987&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001025&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001025&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039323&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039323&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066154&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066154&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066154&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066154&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030688&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030688&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027690&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027690&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032604&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032604&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066150&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066150&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066150&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066150&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002416&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030785&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030785&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005716&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005716&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005716&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005716&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028011&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028011&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028011&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028011&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022912&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022912&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060407&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060407&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033860&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033860&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039474&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039474&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039914&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039914&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002769&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002769&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000628&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000628&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024391&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024391&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037989&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037989&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037989&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037989&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022219&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022219&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024392&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053644&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053644&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053644&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053644&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022018&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022018&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018893&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018893&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019179&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019179&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060600&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060600&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039062&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039062&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030672&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030672&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020017&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020017&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028127&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028127&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041333&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041333&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022040&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022040&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019851&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019851&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040564&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040564&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025127&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025127&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019194&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019194&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025537&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025537&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028410&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028410&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029528&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029528&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029661&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029661&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022149&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022149&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028138&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028138&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000013419&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000013419&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033688&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033688&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025135&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025135&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059895&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059895&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041559&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041559&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028521&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028521&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025479&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025479&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038224&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038224&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040694&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040694&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043683&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043683&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043683&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043683&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025477&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025477&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025477&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025477&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030895&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030895&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079057&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079057&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030695&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030695&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059481&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059481&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059481&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059481&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028001&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028001&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000085214&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000085214&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000013236&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000013236&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023456&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023456&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031972&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031972&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040236&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040236&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033831&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033831&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040134&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040134&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042102&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042102&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031877&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031877&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024052&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024052&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000069833&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000069833&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028849&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028849&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024962&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024962&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035203&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035203&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031065&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031065&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024150&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024150&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052456&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052456&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022464&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022464&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015647&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015647&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031865&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031865&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036892&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036892&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002992&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002992&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022051&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022051&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024164&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024164&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000064080&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000064080&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028967&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028967&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028967&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028967&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022477&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022477&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036748&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036748&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030996&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030996&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000010025&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000010025&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053329&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053329&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002985&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002985&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040883&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040883&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034785&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034785&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058952&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058952&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057400&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057400&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005873&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005873&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005873&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005873&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024981&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024981&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000047797&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000047797&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032591&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032591&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079012&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079012&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002012&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002012&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031848&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031848&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000069805&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000069805&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025059&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025059&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002010&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002010&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030592&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030592&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028186&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028186&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006205&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006205&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052911&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052911&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042118&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042118&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016528&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016528&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016528&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016528&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035237&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035237&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002588&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002588&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024049&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024049&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028959&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028959&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031980&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031980&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035504&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035504&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021210&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021210&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006215&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006215&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000049134&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000049134&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052429&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000052429&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048277&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048277&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016534&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016534&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016534&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016534&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032349&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032349&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039130&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039130&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000071650&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000071650&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033022&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033022&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003746&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003746&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003746&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003746&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002496&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002496&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002496&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002496&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032185&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032185&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019528&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019528&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032083&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032083&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031173&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031173&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032479&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032479&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000051748&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000051748&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006360&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006360&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021340&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021340&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024914&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024914&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034659&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034659&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032079&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002379&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002379&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036856&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036856&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024208&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024208&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000046352&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000046352&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028076&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028076&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036052&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036052&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034842&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034842&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061232&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061232&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061232&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061232&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003865&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003865&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079243&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000079243&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054027&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054027&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058756&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058756&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058756&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058756&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024942&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024942&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053565&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053565&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024847&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024847&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024844&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024844&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024845&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024845&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023571&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023571&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038502&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038502&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038502&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038502&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032458&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032458&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032458&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032458&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028088&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028088&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031097&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031097&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042453&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042453&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001930&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001930&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001930&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001930&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042451&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042451&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078650&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078650&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032657&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032657&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054422&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054422&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019558&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019558&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037053&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037053&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031502&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031502&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031782&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031782&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034432&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034432&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001123&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001123&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004929&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004929&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000009566&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000009566&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027761&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027761&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022500&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022500&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001670&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001670&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034041&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034041&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034041&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034041&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024507&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024507&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020400&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020400&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024646&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024646&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043858&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043858&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034171&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034171&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001666&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001666&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027875&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027875&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000017734&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000017734&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029368&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029368&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020609&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020609&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027249&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027249&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027248&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027248&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078429&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078429&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059714&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000059714&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021135&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021135&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021135&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021135&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060147&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060147&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011877&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011877&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061780&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061780&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027887&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027887&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056973&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056973&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056973&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056973&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001249&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001249&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004937&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004937&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054630&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054630&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020429&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020429&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058833&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058833&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036427&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036427&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000083012&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000083012&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004931&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004931&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022610&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022610&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032207&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032207&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031776&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031776&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032204&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032204&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026623&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026623&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026623&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026623&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038086&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038086&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038086&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038086&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030359&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030359&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000017344&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000017344&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016349&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000016349&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068391&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068391&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021364&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021364&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015094&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015094&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014372&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014372&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014372&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014372&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000073616&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000073616&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015095&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015095&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015095&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015095&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014470&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000014470&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020534&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020534&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042099&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042099&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042099&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042099&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005683&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000005683&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004032&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004032&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004032&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004032&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000049091&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000049091&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057897&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057897&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026405&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026405&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029269&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029269&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018339&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018339&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043284&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000043284&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036503&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036503&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036503&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036503&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022878&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022878&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026603&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026603&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031938&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022877&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022877&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011096&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011096&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015083&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015083&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031834&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031834&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031832&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031832&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026407&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026407&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020644&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020644&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004952&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004952&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068697&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068697&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004044&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004044&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004044&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004044&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026715&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026715&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000071178&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000071178&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037580&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037580&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024990&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024990&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024085&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024085&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001794&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000001794&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031239&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031239&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061689&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061689&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028792&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028792&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022868&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022868&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058709&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000058709&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031722&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031722&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034793&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034793&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022766&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022766&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029260&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029260&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021091&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021091&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041801&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000041801&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031138&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031138&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024899&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000024899&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021493&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021493&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021493&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021493&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000070730&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000070730&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021492&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021492&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000050705&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000050705&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030189&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030189&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032245&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000032245&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037060&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037060&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078440&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000078440&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015854&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015854&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023904&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023904&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023809&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023809&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035642&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035642&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031633&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031633&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030382&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030382&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057037&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057037&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036114&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036114&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031636&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031636&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022553&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022553&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035540&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000035540&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021798&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021798&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002963&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002963&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060802&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060802&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057003&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057003&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031443&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031443&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029610&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029610&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020475&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020475&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029432&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029432&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020884&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020884&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048807&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048807&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030730&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030730&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030730&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030730&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021622&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021622&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053801&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000053801&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074218&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074218&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019261&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000019261&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029716&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029716&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011148&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000011148&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025196&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025196&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002844&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000002844&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056328&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056328&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025199&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025199&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031444&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031444&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031444&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031444&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021922&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021922&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000046727&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000046727&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042524&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042524&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025934&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025934&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020777&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020777&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004891&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000004891&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022445&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022445&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000075602&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000075602&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023967&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023967&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023967&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023967&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030847&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030847&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030847&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030847&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006522&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006522&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027187&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027187&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026117&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026117&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026117&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026117&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038239&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038239&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023829&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023829&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023034&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023034&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027597&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006529&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000006529&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015243&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015243&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015243&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015243&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068267&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068267&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020773&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020773&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000010651&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000010651&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026839&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026839&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036352&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000036352&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037740&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037740&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031461&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031461&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042770&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000042770&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003617&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003617&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026208&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026208&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060703&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000060703&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026820&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026820&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018166&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018166&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000062694&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000062694&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000062694&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000062694&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026417&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026417&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029630&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029630&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038170&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000038170&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020098&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020098&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029311&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029311&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033327&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033327&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033327&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000033327&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022821&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022821&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037493&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037493&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028464&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028464&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023043&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023043&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025172&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025172&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023046&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023046&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026207&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026207&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022415&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022415&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056035&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000056035&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028356&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028356&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022323&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022323&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054072&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054072&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054072&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000054072&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034353&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034353&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040666&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000040666&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029102&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029102&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029201&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029201&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018566&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018566&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000009614&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000009614&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025991&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000025991&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028458&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000028458&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026817&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026817&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029478&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029478&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029071&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029071&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057193&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000057193&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021033&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021033&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003123&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000003123&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015013&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000015013&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031482&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000031482&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027488&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027488&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018819&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018819&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018819&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018819&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000031&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000031&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027099&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027099&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061723&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061723&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026579&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026579&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026368&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026368&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026688&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026688&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023277&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023277&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074264&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074264&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027359&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027359&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026687&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026687&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000072115&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000072115&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030802&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030802&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026874&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026874&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048537&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000048537&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026879&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026879&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022407&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000022407&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000049&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000049&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030605&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030605&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068220&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000068220&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021876&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000021876&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000007097&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000007097&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037254&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037254&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039653&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000039653&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066361&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000066361&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020051&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020051&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020053&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020053&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020053&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020053&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000055027&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000055027&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020722&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000020722&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074336&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074336&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018411&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018411&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018411&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018411&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034220&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000034220&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000154&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000000154&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026456&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026456&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018417&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000018417&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023990&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023990&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026664&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026664&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037852&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037852&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037852&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000037852&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027472&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000027472&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030826&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030826&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026853&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000026853&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061816&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000061816&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030409&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030409&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023092&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023092&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023092&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000023092&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000074247&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029727&gt;</td>
+      <td>"UP"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000029727&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr>
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030401&gt;</td>
+      <td>"DOWN"</td>
+    </tr>
+    <tr class="even">
+      <td>&lt;http://bio2rdf.org/ensembl:ENSMUSG00000030401&gt;</td>
+      <td>"UP"</td>
+    </tr>
+  </tbody>
+</table>
+  </body>
+</html>
