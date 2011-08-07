@@ -17,67 +17,50 @@ PREFIX fn: <http://www.w3.org/2005/xpath-functions#>
 
 CONSTRUCT { 
 ?experiment a experiment: .
+?experiment rdfs:label ?experimentName .
 ?experiment modelOrganism: ?modelOrganism .
 ?experiment result: ?resultSet .
 
-?experiment platform: ?platform .
 
 ?resultSet gene: ?gene .
 ?resultSet differential_expression: ?expression .
 
 ?gene  rdf:type gene: .
-?gene  rdfs:label ?geneSymbol .
-?gene  chromosomeLocation: ?chromosomeLocation .
-
-
 
 }
 WHERE {
-  {
-    {
-	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
-		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
-				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
+ 
+SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
+?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> .
+?experiment	<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
 
-				OPTIONAL { ?experiment rdfs:label ?experimentName . }
-		?resultSet <http://purl.org/dc/terms/isPartOf>   ?experiment .
-		?resultSet <http://purl.org/net/biordfmicroarray/ns#differentially_expressed_gene> ?geneL .
-		?resultSet <http://purl.org/net/biordfmicroarray/ns#has_ouput_value>	 ?foldChange .
+?experiment <http://purl.org/dc/terms/isReferencedBy> ?experimentRef .
+?experimentRef <http://magetab-om.sourceforge.net/title> ?experimentName .
 
-		?foldChange rdf:type biordf:fold_change .
-		?foldChange  rdf:value ?diffexpression .
+?resultSet <http://purl.org/dc/terms/isPartOf>   ?experiment .
+?resultSet <http://purl.org/net/biordfmicroarray/ns#differentially_expressed_gene> ?geneL .
+?resultSet <http://purl.org/net/biordfmicroarray/ns#has_ouput_value>	 ?foldChange .
 
-		?geneL a biordf:gene .
-		?geneL stat:probe_set_id ?probeid .
-		?geneL rdfs:label	?geneSymbol .
-		FILTER (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression)
-		
-	}
-  }
-  UNION
-  {
-	SERVICE <http://hcls.deri.org:8080/openrdf-sesame/repositories/biordfmicroarray> {
-		?experiment	a	<http://purl.org/net/biordfmicroarray/ns#microarray_experiment> ;
-				<http://purl.org/net/biordfmicroarray/ns#modelOrganism>	?modelOrganism .
-
-				OPTIONAL { ?experiment rdfs:label ?experimentName . }
-		?resultSet <http://purl.org/dc/terms/isPartOf>   ?experiment .
-		?resultSet <http://purl.org/net/biordfmicroarray/ns#differentially_expressed_gene> ?geneL .
-		?resultSet <http://purl.org/net/biordfmicroarray/ns#has_ouput_value>	 ?foldChange .
-
-		?foldChange rdf:type biordf:fold_change .
-		?foldChange  rdf:value ?diffexpression .
-
-		?geneL stat:probe_set_id ?probeid .
-		?geneL rdfs:label	?geneSymbol .
-		FILTER (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression)
-		
-	}
-  }
+{
+?foldChange rdf:type biordf:fold_change .
+?foldChange  rdf:value ?diffexpression .
+FILTER (xsd:decimal(?diffexpression) > 0) BIND ("UP" AS ?expression)
 }
+UNION 
+{
+?foldChange rdf:type biordf:fold_change .
+?foldChange  rdf:value ?diffexpression .
+FILTER (xsd:decimal(?diffexpression) < 0) BIND ("DOWN" AS ?expression)
+}
+?geneL stat:probe_set_id ?probeid .
+?geneL rdfs:label	?geneSymbol .
+
+		
+}
+
 
 	BIND(IRI(fn:concat("http://bio2rdf.org/affymetrix:", ?probeid)) as ?probeuri)
 	?probeuri affy:xEnsembl ?gene .
-	?probeuri affy:Chromosomal_Location ?chromosomeLocation .
-	?probeuri  affy:xGeneChip_Array ?platform .
+	
+	
 }
